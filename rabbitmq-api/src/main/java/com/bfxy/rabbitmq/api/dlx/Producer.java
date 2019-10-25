@@ -11,10 +11,12 @@ public class Producer {
 	public static void main(String[] args) throws Exception {
 		
 		ConnectionFactory connectionFactory = new ConnectionFactory();
-		connectionFactory.setHost("192.168.11.76");
+		connectionFactory.setHost("119.23.50.194");
 		connectionFactory.setPort(5672);
 		connectionFactory.setVirtualHost("/");
-		
+		connectionFactory.setUsername("sunkun");
+		connectionFactory.setPassword("123456");
+
 		Connection connection = connectionFactory.newConnection();
 		Channel channel = connection.createChannel();
 		
