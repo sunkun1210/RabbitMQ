@@ -16,11 +16,11 @@ public class Consumer {
 		
 		
 		ConnectionFactory connectionFactory = new ConnectionFactory();
-		connectionFactory.setHost("119.23.50.194");
+		connectionFactory.setHost("122.51.193.97");
 		connectionFactory.setPort(5672);
 		connectionFactory.setVirtualHost("/");
-		connectionFactory.setUsername("sunkun");
-		connectionFactory.setPassword("123456");
+		connectionFactory.setUsername("admin");
+		connectionFactory.setPassword("admin");
 		Connection connection = connectionFactory.newConnection();
 		Channel channel = connection.createChannel();
 		
@@ -33,6 +33,7 @@ public class Consumer {
 		
 		Map<String, Object> agruments = new HashMap<String, Object>();
 		agruments.put("x-dead-letter-exchange", "dlx.exchange");
+		agruments.put("x-max-length", 10);
 		//这个agruments属性，要设置到声明队列上
 		channel.queueDeclare(queueName, true, false, false, agruments);
 		channel.queueBind(queueName, exchangeName, routingKey);

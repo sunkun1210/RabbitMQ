@@ -11,11 +11,11 @@ public class Producer {
 	public static void main(String[] args) throws Exception {
 		
 		ConnectionFactory connectionFactory = new ConnectionFactory();
-		connectionFactory.setHost("119.23.50.194");
+		connectionFactory.setHost("122.51.193.97");
 		connectionFactory.setPort(5672);
 		connectionFactory.setVirtualHost("/");
-		connectionFactory.setUsername("sunkun");
-		connectionFactory.setPassword("123456");
+		connectionFactory.setUsername("admin");
+		connectionFactory.setPassword("admin");
 
 		Connection connection = connectionFactory.newConnection();
 		Channel channel = connection.createChannel();
@@ -25,12 +25,12 @@ public class Producer {
 		
 		String msg = "Hello RabbitMQ DLX Message";
 		
-		for(int i =0; i<1; i ++){
+		for(int i =0; i<2000; i ++){
 			
 			AMQP.BasicProperties properties = new AMQP.BasicProperties.Builder()
 					.deliveryMode(2)
 					.contentEncoding("UTF-8")
-					.expiration("10000")
+					//.expiration("10000")
 					.build();
 			channel.basicPublish(exchange, routingKey, true, properties, msg.getBytes());
 		}
